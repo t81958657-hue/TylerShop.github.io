@@ -1,27 +1,27 @@
 const products = [
 {
-    productName = "Spam Musubi",
+    productName: "Spam Musubi",
     price: 3.99,
     category: "Japanese Food",
-    inStock = true
+    inStock: true
 }, 
 {
-    productName = "Kimbap",
+    productName: "Kimbap",
     price: 7.99,
     category: "Korean Food",
-    inStock = true  
+    inStock: true  
 },
 {
-    productName = "Wagyu Bowl",
+    productName: "Wagyu Bowl",
     price: 33.99,
     category: "Japanese Food",
-    inStock = false
+    inStock: false
 },
 {
-    productName = "Pad Thai",
+    productName: "Pad Thai",
     price: 12.99,
     category: "Thai Food",
-    inStock = true
+    inStock: true
 }
 ];
 
@@ -63,7 +63,7 @@ function viewCart()
 
 function filterByCategory(category)
 {
-    const filteredProducts = products.filter(p => p.category === category);
+    return products.filter(p => p.category === category);
 
 }
 
@@ -72,5 +72,33 @@ filteredProducts.forEach(product =>
     console.log(' ${product.productName}: $${product.price.toFixed(2)}');
 
 }
+
+// Establishes the render products function
+function renderProducts(productsShown) {
+    const productGrid = document.getElementById('product-grid');
+
+    //clear previous cards
+    productGrid.innerHTML = '';
+
+    //Looping through each product
+    productsShown.forEach(product => {
+
+        const productCard = document.createElement('div');
+        productCard.classList.add('product-card');
+
+        //Fill card with info and button
+        productCard.innerHTML = '
+            <h3>${product.productName}</h3>
+            <><p>Category: ${product.category}</p><p>Price: $${product.price.toFixed(2)}</p><p>${product.inStock ? 'In Stock' : 'Out of Stock'}</p><button class="add-btn" $ {...!product.inStock ? 'disabled' : ''}>
+                    Add to Cart
+                </button></>
+        ';
+        
+    })
+
+
+}
+
 );
+
 
