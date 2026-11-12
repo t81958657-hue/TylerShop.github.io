@@ -9,18 +9,18 @@ function renderProducts(productsShown) {
     productGrid.innerHTML = '';
 
     // Looping through each product       
-        productsShown.forEach(product => {
+        productsShown.forEach(products => {
             const productCard = document.createElement('div');
             productCard.classList.add('product-card');
         
 
         // Fill card with info and button
         productCard.innerHTML = `
-            <h3>${product.productName}</h3>
-            <p>Category: ${product.category}</p>
-            <p>Price: $${product.price.toFixed(2)}</p>
-            <p>${product.inStock ? 'In Stock' : 'Out of Stock'}</p>
-            <button class="add-btn" ${!product.inStock ? 'disabled' : ''}>
+            <h3>${products.productName}</h3>
+            <p>Category: ${products.category}</p>
+            <p>Price: $${products.price.toFixed(2)}</p>
+            <p>${products.inStock ? 'In Stock' : 'Out of Stock'}</p>
+            <button class="add-btn" ${!products.inStock ? 'disabled' : ''}>
                 Add to Cart
             </button>
         `;
@@ -34,7 +34,7 @@ function renderProducts(productsShown) {
             errorElement.textContent = '';
 
             try{  //adding try, catch, finally error management
-                addToCart(product.productName);
+                addToCart(products.productName);
                 const cartCount = document.getElementById('cart-count');
                 if(cartCount) {
                     cartCount.textContent = cart.length;
@@ -47,7 +47,7 @@ function renderProducts(productsShown) {
             }
 
             finally {
-                console.log(`Tried to add "${product.productName}" to cart`);
+                console.log(`Tried to add "${products.productName}" to cart`);
             }
            
         });
