@@ -42,8 +42,11 @@ function renderProducts(productsShown) {
 
             } 
             
-            catch (error){
-                errorElement.textContent = error.message;
+            catch (error){  //fixed the catch error so the user does not see raw errors
+                if (errorElement) {
+                    errorElement.textContent = "Cart item could not be added";
+                }
+                console.error("Error messages:", error.message);
             }
 
             finally {
